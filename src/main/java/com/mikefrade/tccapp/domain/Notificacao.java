@@ -15,8 +15,13 @@ public class Notificacao implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	// private Usuario usuario;
-	// id usuario;
+	
+   // @ManyToOne(fetch = FetchType.EAGER)
+   // @JoinColumn(name = "ID_USUARIO", insertable = true, updatable = true)
+   // @Fetch(FetchMode.JOIN)
+   // @Cascade(CascadeType.ALL)
+	private Usuario usuario;  // id usuario;
+	
 	private Date logHora;
 	private String latitude;
 	private String longitude;

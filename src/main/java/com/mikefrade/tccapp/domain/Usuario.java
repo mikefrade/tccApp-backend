@@ -10,7 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mikefrade.tccapp.domain.enums.TipoUsuario;
 
 @Entity
@@ -24,11 +25,8 @@ public class Usuario implements Serializable {
 	private Integer tipo;
 	
 	@OneToMany(mappedBy = "usuario")
-	@JsonBackReference
+	@JsonIgnore
 	transient private Set<Notificacao> notificacao = new HashSet<>();	
-  //  @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
-   // @Cascade(org.hibernate.annotations.CascadeType.ALL)
-   // transient private Set<Notificacao> notificacao = new HashSet<>();
 
 	public Usuario () {
 		

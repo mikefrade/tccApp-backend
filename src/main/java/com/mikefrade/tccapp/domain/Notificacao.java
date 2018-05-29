@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Notificacao implements Serializable {
@@ -20,13 +19,8 @@ public class Notificacao implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-   // @ManyToOne(fetch = FetchType.EAGER)
-   // @JoinColumn(name = "ID_USUARIO", insertable = true, updatable = true)
-   // @Fetch(FetchMode.JOIN)
-   // @Cascade(CascadeType.ALL)
 	@ManyToOne
 	@JoinColumn(name = "USUARIO_ID")
-	@JsonManagedReference
 	private Usuario usuario;  // id usuario;
 	
 	private Date logHora;
@@ -42,7 +36,7 @@ public class Notificacao implements Serializable {
 	
 
 
-	public Notificacao(Integer id, Usuario usuario, Date logHora, String latitude, String longitude, String endereco,
+	public Notificacao(Integer id, Date logHora, Usuario usuario,  String latitude, String longitude, String endereco,
 			String categoria, String descricao, Boolean ativo) {
 		super();
 		this.id = id;
@@ -56,113 +50,92 @@ public class Notificacao implements Serializable {
 		this.ativo = ativo;
 	}
 
+
+
+	public Notificacao(Integer id, Usuario usuario, String latitude, String longitude, String endereco,
+			String categoria, String descricao, Boolean ativo) {
+		super();
+		this.id = id;
+		this.usuario = usuario;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.endereco = endereco;
+		this.categoria = categoria;
+		this.descricao = descricao;
+		this.ativo = ativo;
+	}
+
 	public Integer getId() {
 		return id;
 	}
-
-
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
-
-
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
-
-
 	public Date getLogHora() {
 		return logHora;
 	}
-
-
 
 	public void setLogHora(Date logHora) {
 		this.logHora = logHora;
 	}
 
-
-
 	public String getLatitude() {
 		return latitude;
 	}
-
-
 
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 
-
-
 	public String getLongitude() {
 		return longitude;
 	}
-
-
 
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 
-
-
 	public String getEndereco() {
 		return endereco;
 	}
-
-
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
 
-
-
 	public String getCategoria() {
 		return categoria;
 	}
-
-
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
 
-
-
 	public String getDescricao() {
 		return descricao;
 	}
-
-
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 
-
-
 	public Boolean getAtivo() {
 		return ativo;
 	}
 
-
-
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
-
-
 
 	@Override
 	public int hashCode() {

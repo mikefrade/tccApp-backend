@@ -38,8 +38,10 @@ public class TccappApplication implements CommandLineRunner {
 		
 		Date date = new Date();
 		date = Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime();
-		Notificacao not1 = new Notificacao (null, user1, date, "latitude", "longitude", "Rua Açucena, 48. Sol Nascente", "Iluminação Pública", "Lâmpada queimada", true);
-		Notificacao not2 = new Notificacao (null,user1, date, "latitude", "longitude", "Rua Açucena, 48. Sol Nascente", "Iluminação Pública", "Lâmpada queimada", true);
+		
+		
+		Notificacao not1 = new Notificacao (null, date, user1, "latitude", "longitude", "Rua Açucena, 48. Sol Nascente", "Iluminação Pública", "Lâmpada queimada", true);
+		Notificacao not2 = new Notificacao (null, date, user1, "latitude", "longitude", "Rua Açucena, 48. Sol Nascente", "Iluminação Pública", "Lâmpada queimada", true);
 	
 		notificacaoRepository.saveAll(Arrays.asList(not1, not2));
 

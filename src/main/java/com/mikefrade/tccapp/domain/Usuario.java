@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,8 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	
+	@Column(unique=true)
 	private String email;
 	private Integer tipo;
 	
@@ -37,7 +40,7 @@ public Usuario(Integer id, String nome, String email, TipoUsuario tipo) {
 	this.id = id;
 	this.nome = nome;
 	this.email = email;
-	this.tipo = tipo.getCod();
+	this.tipo = (tipo==null) ? null: tipo.getCod();
 }
 
 public Integer getId() {

@@ -33,9 +33,11 @@ public class NotificacaoService {
 		return repo.save(obj);
 	}
 	
+	
 	public Notificacao update(Notificacao obj) {
-		find(obj.getId());
-		return repo.save(obj);
+		Notificacao newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 	
 	public void  delete (Integer id) {
@@ -50,5 +52,12 @@ public class NotificacaoService {
 	public List<Notificacao> findAll(){
 		return repo.findAll();
 	}
-	
+	private void updateData(Notificacao newObj, Notificacao obj) {
+		
+		newObj.setLatitude(obj.getLatitude());
+		newObj.setLongitude(obj.getLongitude());
+		newObj.setEndereco(obj.getEndereco());
+		newObj.setCategoria(obj.getCategoria());
+		newObj.setDescricao(obj.getDescricao());
+	}
 }

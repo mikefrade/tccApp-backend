@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mikefrade.tccapp.domain.Notificacao;
 import com.mikefrade.tccapp.domain.Usuario;
@@ -13,6 +14,7 @@ import com.mikefrade.tccapp.domain.enums.TipoUsuario;
 import com.mikefrade.tccapp.repositories.NotificacaoRepository;
 import com.mikefrade.tccapp.repositories.UsuarioRepository;
 
+@Service
 public class DBService {
 	@Autowired
 	private NotificacaoRepository notificacaoRepository;

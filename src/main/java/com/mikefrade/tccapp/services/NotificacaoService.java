@@ -1,5 +1,7 @@
 package com.mikefrade.tccapp.services;
 
+import java.awt.image.BufferedImage;
+import java.net.URI;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +9,9 @@ import java.util.Optional;
 import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mikefrade.tccapp.domain.Notificacao;
 import com.mikefrade.tccapp.repositories.NotificacaoRepository;
@@ -18,6 +22,15 @@ import com.mikefrade.tccapp.services.exceptions.ObjectNotFountException;
 public class NotificacaoService {
 	@Autowired
 	private NotificacaoRepository repo;
+	
+	@Autowired
+	private S3Service s3Service;
+	
+	@Autowired
+	private ImageService imageService;
+	
+	@Value("${img.prefix.notificacao.picture}")
+	private String prefix;
 
 	public Notificacao find(Integer id) {
 		Optional<Notificacao> obj = repo.findById(id);
@@ -59,5 +72,13 @@ public class NotificacaoService {
 		newObj.setEndereco(obj.getEndereco());
 		newObj.setCategoria(obj.getCategoria());
 		newObj.setDescricao(obj.getDescricao());
+	}
+	
+	public URI UploadNotificacaoPicture(MultipartFile multipartFile, Integer id) {
+	
+		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+		String fileName = prefix + id + ".jpg";
+		
+		return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
 	}
 }

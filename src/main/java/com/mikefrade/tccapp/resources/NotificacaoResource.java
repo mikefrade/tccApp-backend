@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mikefrade.tccapp.domain.Notificacao;
@@ -55,6 +57,12 @@ public class NotificacaoResource {
 		List<Notificacao> list = service.findAll();
 		List<NotificacaoDTO> listDto = list.stream().map(obj -> new NotificacaoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);		
+	}
+	
+	@RequestMapping(value="/picture//{id}", method = RequestMethod.POST)
+	public ResponseEntity<Void> uploadNotificacaoPicture(@RequestParam(name="file") MultipartFile file, @PathVariable Integer id){
+		URI uri = service.UploadNotificacaoPicture(file, id);
+		return ResponseEntity.created(uri).build();
 	}
 	
 }

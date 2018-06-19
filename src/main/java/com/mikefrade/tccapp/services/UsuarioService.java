@@ -25,10 +25,8 @@ public class UsuarioService {
 		if(usuarioCadastrado(obj.getEmail())) {
 			Usuario newObj =  find(obj.getEmail()); 
 			updateData(newObj, obj);
-		    System.out.println("Passei no if do update");
 			return repo.save(newObj);
 		} else {
-		    System.out.println("Passei no else do update");
 			obj.setTipo(TipoUsuario.USUARIOCIDADAO);
 			return repo.save(obj);
 		}	

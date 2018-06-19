@@ -23,7 +23,7 @@ public class NotificacaoDTO implements Serializable {
 	}
 	
 	public NotificacaoDTO(Notificacao obj) {
-		id = obj.getId();
+		setId(obj.getId());
 		nomeuser = obj.getUsuario().getNome();
 		logHora = obj.getLogHora();
 		latitude = obj.getLatitude();
@@ -88,6 +88,14 @@ public class NotificacaoDTO implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 }

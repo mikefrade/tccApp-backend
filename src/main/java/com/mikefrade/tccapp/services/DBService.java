@@ -30,8 +30,8 @@ public class DBService {
 		date = Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime();
 		
 	
-		Notificacao not1 = new Notificacao (null, date, user1, "-19.8157", "-43.9545", "Rua Açucena, 48. Sol Nascente", "Iluminação Pública", "Lâmpada queimada", true);
-		Notificacao not2 = new Notificacao (null, date, user1, "-19.8157", "-43.9542", "Rua Açucena, 48. Sol Nascente", "Iluminação Pública", "Lâmpada queimada", true);
+		Notificacao not1 = new Notificacao (null, date, user1, "-19.995143", "-44.059917", "Rua Açucena, 48. Sol Nascente", "Iluminação Pública", "Lâmpada queimada", true);
+		Notificacao not2 = new Notificacao (null, date, user1, "-19.995874", "-44.060321", "Rua Açucena, 48. Sol Nascente", "Iluminação Pública", "Lâmpada queimada", true);
 	
 		notificacaoRepository.saveAll(Arrays.asList(not1, not2));
 

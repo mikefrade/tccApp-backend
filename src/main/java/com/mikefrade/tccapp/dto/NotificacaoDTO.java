@@ -1,17 +1,16 @@
 package com.mikefrade.tccapp.dto;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.mikefrade.tccapp.domain.Notificacao;
-import com.mikefrade.tccapp.domain.Usuario;
 
 public class NotificacaoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	private String nomeuser;
-	private Date logHora;
+	private LocalDateTime logHora;
 	private String latitude;
 	private String longitude;
 	private String endereco;
@@ -42,11 +41,11 @@ public class NotificacaoDTO implements Serializable {
 		this.nomeuser = nomeuser;
 	}
 
-	public Date getLogHora() {
+	public LocalDateTime getLogHora() {
 		return logHora;
 	}
 
-	public void setLogHora(Date logHora) {
+	public void setLogHora(LocalDateTime logHora) {
 		this.logHora = logHora;
 	}
 

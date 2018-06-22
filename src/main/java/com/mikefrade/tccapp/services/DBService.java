@@ -1,9 +1,7 @@
 package com.mikefrade.tccapp.services;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,15 +21,18 @@ public class DBService {
 
 	public void instantiateTestDatabase() {
 		Usuario user1 = new Usuario (null, "Mike Frade", "mikefrade@hotmail.com", TipoUsuario.USUARIOCIDADAO);
+		Usuario user2 = new Usuario (null, "Mike Frade 1 ", "mikefrade1@hotmail.com", TipoUsuario.USUARIOCIDADAO);
 		
 		usuarioRepository.save(user1);
+		usuarioRepository.save(user2);
 		
-		Date date = new Date();
-		date = Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime();
+		//Date date = new Date();
+		//date = Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime();
+		LocalDateTime data = LocalDateTime.now();
 		
 	
-		Notificacao not1 = new Notificacao (null, date, user1, "-19.995143", "-44.059917", "Rua Açucena, 48. Sol Nascente", "Iluminação Pública", "Lâmpada queimada", true);
-		Notificacao not2 = new Notificacao (null, date, user1, "-19.995874", "-44.060321", "Rua Açucena, 48. Sol Nascente", "Iluminação Pública", "Lâmpada queimada", true);
+		Notificacao not1 = new Notificacao (null, data, user1, "-19.92087680405777", "-43.9479585740246", "Rua dos Goitacazes, 1161 - Centro, Belo Horizonte", "Iluminação Pública", "Lâmpada queimada", true);
+		Notificacao not2 = new Notificacao (null, data, user2, "-19.91930100438631", "-43.94874332844506", "Rua dos Tupis, 1265 - Barro Preto, Belo Horizonte", "Via Pública", "Buraco na rua", true);
 	
 		notificacaoRepository.saveAll(Arrays.asList(not1, not2));
 

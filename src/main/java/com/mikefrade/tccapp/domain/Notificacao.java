@@ -1,16 +1,14 @@
 package com.mikefrade.tccapp.domain;
 
 import java.io.Serializable;
-import java.util.Date;
-
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 
 @Entity
@@ -25,8 +23,7 @@ public class Notificacao implements Serializable {
 	@JoinColumn(name = "USUARIO_ID")
 	private Usuario usuario;  // id usuario;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date logHora;
+	private LocalDateTime logHora;
 	private String latitude;
 	private String longitude;
 	private String endereco;
@@ -39,7 +36,7 @@ public class Notificacao implements Serializable {
 	
 
 
-	public Notificacao(Integer id, Date logHora, Usuario usuario,  String latitude, String longitude, String endereco,
+	public Notificacao(Integer id, LocalDateTime logHora, Usuario usuario,  String latitude, String longitude, String endereco,
 			String categoria, String descricao, Boolean ativo) {
 		super();
 		this.id = id;
@@ -84,11 +81,11 @@ public class Notificacao implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public Date getLogHora() {
+	public LocalDateTime getLogHora() {
 		return logHora;
 	}
 
-	public void setLogHora(Date logHora) {
+	public void setLogHora(LocalDateTime logHora) {
 		this.logHora = logHora;
 	}
 

@@ -2,11 +2,9 @@ package com.mikefrade.tccapp.services;
 
 import java.awt.image.BufferedImage;
 import java.net.URI;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mikefrade.tccapp.domain.Notificacao;
+import com.mikefrade.tccapp.domain.Usuario;
 import com.mikefrade.tccapp.repositories.NotificacaoRepository;
+import com.mikefrade.tccapp.repositories.UsuarioRepository;
 import com.mikefrade.tccapp.services.exceptions.DataIntegrityViolationExpetion;
 import com.mikefrade.tccapp.services.exceptions.ObjectNotFountException;
 
@@ -22,6 +22,9 @@ import com.mikefrade.tccapp.services.exceptions.ObjectNotFountException;
 public class NotificacaoService {
 	@Autowired
 	private NotificacaoRepository repo;
+	
+	@Autowired
+	private UsuarioRepository repoUser;
 	
 	@Autowired
 	private S3Service s3Service;
@@ -39,9 +42,8 @@ public class NotificacaoService {
 		}
 	public Notificacao insert(Notificacao obj) {
 		obj.setId(null);
-		Date date = new Date();
-		date = Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime();
-		obj.setLogHora(date);
+		LocalDateTime data = LocalDateTime.now();
+		obj.setLogHora(data);
 		obj.setAtivo(true);
 		return repo.save(obj);
 	}
@@ -65,6 +67,13 @@ public class NotificacaoService {
 	public List<Notificacao> findAll(){
 		return repo.findAll();
 	}
+	
+	public List<Notificacao> findAllUser(Integer id){
+		Usuario user = new Usuario(); 
+		user = repoUser.findById(id).get();
+		return  repo.findByUsuario(user);
+	}
+	
 	private void updateData(Notificacao newObj, Notificacao obj) {
 		
 		newObj.setLatitude(obj.getLatitude());

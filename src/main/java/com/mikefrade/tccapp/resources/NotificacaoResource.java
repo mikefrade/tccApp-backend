@@ -30,6 +30,13 @@ public class NotificacaoResource {
 		Notificacao obj = service.find(id);
 		return ResponseEntity.ok().body(obj);		
 	}
+	
+	@RequestMapping(value="/user/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<NotificacaoDTO>> findAllUser(@PathVariable Integer id) {
+		List<Notificacao> list = service.findAllUser(id);
+		List<NotificacaoDTO> listDto = list.stream().map(obj -> new NotificacaoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);				
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Notificacao obj){
